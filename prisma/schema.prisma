@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum PostOptions {
+  OPTION_1
+  OPTION_2
+}
+
+enum UserRoles {
+  BASIC
+  ADMIN
+}
+
+model Post {
+  id       String      @id @default(auto()) @map("_id") @db.ObjectId
+  author   User        @relation(fields: [authorId], references: [id])
+  authorId String      @db.ObjectId
+  content  String
+  options  PostOptions @default(OPTION_1)
+  image    String
+  thread   Thread      @relation(fields: [threadId], references: [id])
+  threadId String      @db.ObjectId
+}
+
+model User {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  username String
+  password String
+  role     UserRoles @default(BASIC)
+  colour   String?
+  avatar   String?
+  Posts    Post[]
+  Threads  Thread[]
+}
+
+model Thread {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String   @db.ObjectId
+  subject   String
+  content   String
+  image     String
+  createdAt DateTime @default(now())
+  Posts     Post[]
+}
