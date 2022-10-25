@@ -1,5 +1,9 @@
+const SERVER_PORT = 3000;
+
 const CONSTANTS = {
     IMG_UPLOAD_PATH: "/uploads/img",
+    SERVER_ONLINE_MSG: `Server running on port ${SERVER_PORT}`,
+    SERVER_PORT
 };
 
 const RATE_LIMIT_OPTIONS = {

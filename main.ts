@@ -13,15 +13,13 @@ const createServer = async () => {
     return express();
 };
 const main = (app: Express) => {
-    app.listen(3000, () => console.log("server running on port 3000"));
+    const { SERVER_ONLINE_MSG, SERVER_PORT, IMG_UPLOAD_PATH } = CONSTANTS;
+    app.listen(SERVER_PORT, () => console.log(SERVER_ONLINE_MSG));
     app.use(morgan("dev"));
-    app.use("/uploads/images", express.static(CONSTANTS.IMG_UPLOAD_PATH));
+    app.use("/uploads/images", express.static(IMG_UPLOAD_PATH));
     app.use(express.json());
     app.use(rateLimiter);
     app.use(userRoutes);
 };
 
-createServer()
-    .then(main)
-    .catch(console.error)
-    .finally(() => prisma.$disconnect());
+createServer().then(main).catch(console.error).finally(prisma.$disconnect);
