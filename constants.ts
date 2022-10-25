@@ -1,4 +1,4 @@
-const SERVER_PORT = 3000;
+const SERVER_PORT = 3001;
 
 const CONSTANTS = {
     IMG_UPLOAD_PATH: "/uploads/img",

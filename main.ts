@@ -4,6 +4,7 @@ import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import { CONSTANTS, RATE_LIMIT_OPTIONS } from "./constants";
 import { userRoutes } from "./routes/user";
+import { threadRoutes } from "./routes/threads";
 
 export const prisma = new PrismaClient();
 const rateLimiter = rateLimit(RATE_LIMIT_OPTIONS);
@@ -20,6 +21,10 @@ const main = (app: Express) => {
     app.use(express.json());
     app.use(rateLimiter);
     app.use(userRoutes);
+    app.use(threadRoutes);
 };
 
-createServer().then(main).catch(console.error).finally(prisma.$disconnect);
+createServer()
+    .then(main)
+    .catch(console.error)
+    .finally(() => prisma.$disconnect());
