@@ -1,14 +1,12 @@
-import { UserRole } from "@prisma/client";
+import { User, UserRole } from "@prisma/client";
 import { sign } from "jsonwebtoken";
+import { JwtPayload } from "../../../middlewares/types";
 
 const createAuthToken = (
-    user: {
-        id: string;
-        role: UserRole;
-    },
+    { id, role }: JwtPayload,
     maxAge = 1 * 24 * 60 * 60
 ): [string, number] => [
-        sign({ id: user.id, role: user.role }, process.env["JWT_SECRET"] as string, {
+        sign({ id, role }, process.env["JWT_SECRET"] as string, {
             expiresIn: maxAge,
         }),
         maxAge,

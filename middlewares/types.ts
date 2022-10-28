@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
 
-interface JwtPayload extends Pick<User, 'role'> { }
+interface JwtPayload extends Pick<User, 'id' | 'role'> { }
 
 export { JwtPayload };
