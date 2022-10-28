@@ -27,7 +27,6 @@ const login = async (
     { body: { username, password } = {} }: Request,
     res: Response
 ) => {
-    console.log({ username, password })
     try {
         const {
             user: { username: name },
@@ -38,8 +37,8 @@ const login = async (
             token,
         });
     } catch (err) {
-        console.log({ err })
-        res.status(400).json({ err });
+        const { message } = err as Error;
+        res.status(400).json({ error: message });
     }
 };
 
