@@ -39,7 +39,7 @@ const getThreads = async (n: number): Promise<Thread[]> => {
         const index = Math.floor(Math.random() * values.length);
         return values[index];
     };
-    const orderBy = shuffleArray(["id", "author", "content"]);
+    const orderBy = shuffleArray(["id", "authorId", "content"]);
     const orderDir = shuffleArray(["asc", "desc"]);
     const skip = Math.max(
         0,

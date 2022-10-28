@@ -19,7 +19,7 @@ const getUserData = async ({
     });
     if (!(await compare(password, user.password)))
         throw new Error("Invalid password!");
-    return { user, token: createAuthToken(user.id) }
+    return { user, token: createAuthToken(user) }
 };
 
 export { getUserData };

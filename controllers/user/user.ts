@@ -15,7 +15,7 @@ const register = async (
                 password: await hash(password),
             },
         });
-        const [token, maxAge] = createAuthToken(user.id);
+        const [token, maxAge] = createAuthToken(user);
         res.cookie("Authorization", token, { httpOnly: true, maxAge });
         res.status(200).json({ username: user.username });
     } catch (err) {
@@ -27,6 +27,7 @@ const login = async (
     { body: { username, password } = {} }: Request,
     res: Response
 ) => {
+    console.log({ username, password })
     try {
         const {
             user: { username: name },
@@ -37,6 +38,7 @@ const login = async (
             token,
         });
     } catch (err) {
+        console.log({ err })
         res.status(400).json({ err });
     }
 };

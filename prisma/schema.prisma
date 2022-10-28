@@ -7,14 +7,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum PostOptions {
+enum PostOption {
   OPTION_1
   OPTION_2
 }
 
-enum UserRoles {
-  BASIC
+enum UserRole {
+  BASIC 
   ADMIN
+  SUPERADMIN
 }
 
 model Post {
@@ -22,7 +23,7 @@ model Post {
   author   User        @relation(fields: [authorId], references: [id])
   authorId String      @db.ObjectId
   content  String
-  options  PostOptions @default(OPTION_1)
+  options  PostOption[] @default([OPTION_1])
   image    String
   thread   Thread      @relation(fields: [threadId], references: [id])
   threadId String      @db.ObjectId
@@ -32,7 +33,7 @@ model User {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   username String
   password String
-  role     UserRoles @default(BASIC)
+  role     UserRole @default(BASIC)
   colour   String?
   avatar   String?
   Posts    Post[]
