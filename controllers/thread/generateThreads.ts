@@ -3,7 +3,7 @@ import { genSaltSync } from "bcrypt";
 import { prisma } from "../../main";
 
 const generateMagicThreads = async (
-    { body: { threadCount = 3, authorId } = {} }: Request,
+    { body: { threadCount = 2, authorId } = {} }: Request,
     res: Response
 ) => {
     if (!authorId) return res.status(500).json({ err: "Provide an authorId" });

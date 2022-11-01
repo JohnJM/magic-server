@@ -13,10 +13,9 @@ const getHomepageThreads = async (_req: Request, res: Response) => {
 };
 
 const getThreads = async (n: number): Promise<Thread[]> => {
-    const shuffleArray = (values: string[]) => {
-        const index = Math.floor(Math.random() * values.length);
-        return values[index];
-    };
+    const shuffleArray = (values: string[]) =>
+        values[Math.floor(Math.random() * values.length)];
+
     const orderBy = shuffleArray(["id", "authorId", "content"]);
     const orderDir = shuffleArray(["asc", "desc"]);
     const skip = Math.max(

@@ -17,7 +17,7 @@ const register = async (
         });
         const [token, maxAge] = createAuthToken(user);
         res.cookie("Authorization", token, { httpOnly: true, maxAge });
-        res.status(200).json({ username: user.username });
+        res.status(200).json({ username: user.username, success: true });
     } catch (err) {
         res.status(400).json({ err });
     }
