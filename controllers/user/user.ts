@@ -19,7 +19,8 @@ const register = async (
         res.cookie("Authorization", token, { httpOnly: true, maxAge });
         res.status(200).json({ username: user.username, success: true });
     } catch (err) {
-        res.status(400).json({ err });
+        const { message } = err as Error;
+        res.status(400).json({ error: message });
     }
 };
 
