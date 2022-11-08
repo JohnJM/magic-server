@@ -38,6 +38,9 @@ model User {
   avatar   String?
   Posts    Post[]
   Threads  Thread[]
+  firstName String?
+  lastName String?
+  email String?
 }
 
 model Thread {
