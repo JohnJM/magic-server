@@ -10,8 +10,6 @@ const getAuthMiddleware =
     res: Response,
     next: NextFunction,
   ) => {
-    console.log(token);
-
     if (!token) return sendUnauthorised(res);
     try {
       const { role } = verify(
