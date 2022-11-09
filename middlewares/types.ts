@@ -1,5 +1,12 @@
-import { User } from "@prisma/client";
+import { User } from '@prisma/client';
+import { Request } from 'express';
 
-interface JwtPayload extends Pick<User, 'id' | 'role'> { }
+interface JwtPayload extends Pick<User, 'id' | 'role'> {}
 
-export { JwtPayload };
+interface MimeMapLiteral {
+  'image/png': 'png';
+  'image/jpeg': 'jpeg';
+  'image/jpg': 'jpg';
+}
+
+export { JwtPayload, MimeMapLiteral };

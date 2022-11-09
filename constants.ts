@@ -1,16 +1,24 @@
+import path from 'path';
+
 const SERVER_PORT = 3001;
 
 const CONSTANTS = {
-    IMG_UPLOAD_PATH: "/uploads/img",
-    SERVER_ONLINE_MSG: `Server running on port ${SERVER_PORT}`,
-    SERVER_PORT
+  SERVER_ONLINE_MSG: `Server running on port ${SERVER_PORT}`,
+  SERVER_PORT,
+  IMG_UPLOAD_PATH: path.join(__dirname, '/uploads/images'),
 };
 
 const RATE_LIMIT_OPTIONS = {
-    windowMs: 15 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    legacyHeaders: false,
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
 };
 
-export { CONSTANTS, RATE_LIMIT_OPTIONS };
+const MIME_TYPE_MAP = {
+  'image/png': 'png',
+  'image/jpeg': 'jpeg',
+  'image/jpg': 'jpg',
+};
+
+export { CONSTANTS, RATE_LIMIT_OPTIONS, MIME_TYPE_MAP };
