@@ -24,7 +24,7 @@ model Post {
   authorId String      @db.ObjectId
   content  String
   options  PostOption[] @default([OPTION_1])
-  image    String
+  image    String?
   thread   Thread      @relation(fields: [threadId], references: [id])
   threadId String      @db.ObjectId
 }
