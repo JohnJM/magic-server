@@ -1,11 +1,13 @@
 import path from 'path';
 
 const SERVER_PORT = 3001;
+const IMG_DIR = 'uploads/images';
 
 const CONSTANTS = {
   SERVER_ONLINE_MSG: `Server running on port ${SERVER_PORT}`,
   SERVER_PORT,
-  IMG_UPLOAD_PATH: path.join(__dirname, '/uploads/images'),
+  IMG_DIR,
+  FULL_IMG_UPLOAD_PATH: path.join(__dirname, IMG_DIR),
 };
 
 const RATE_LIMIT_OPTIONS = {

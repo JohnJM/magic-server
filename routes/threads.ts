@@ -1,14 +1,13 @@
-import { UserRole } from '@prisma/client';
-import { Router } from 'express';
+import { UserRole } from "@prisma/client";
+import { Router } from "express";
 import {
   createThread,
   getHomepageThreads,
   getThreadsByAuthor,
   generateThreads,
-} from '../controllers/thread';
-// import {} from '../controllers/thread/createThread';
-import { getAuthMiddleware } from '../middlewares/auth';
-import { getFileUploadMiddlewares } from '../middlewares/fileUpload';
+} from "../controllers/thread";
+import { getAuthMiddleware } from "../middlewares/auth";
+import { getFileUploadMiddlewares } from "../middlewares/fileUpload";
 
 const threadRoutes = Router();
 const requireAuth = getAuthMiddleware([
@@ -16,14 +15,14 @@ const requireAuth = getAuthMiddleware([
   UserRole.SUPERADMIN,
   UserRole.BASIC,
 ]);
-const fileUploadMiddlewares = getFileUploadMiddlewares('threadImage');
+const fileUploadMiddlewares = getFileUploadMiddlewares("image");
 
-threadRoutes.get('/threads/homepage', getHomepageThreads);
-threadRoutes.get('/threads/getByAuthor', getThreadsByAuthor);
-threadRoutes.post('/threads/generate', [requireAuth, generateThreads]);
-threadRoutes.post('/threads/create', [
+threadRoutes.get("/threads/homepage", getHomepageThreads);
+threadRoutes.get("/threads/getByAuthor", getThreadsByAuthor);
+threadRoutes.post("/threads/generate", [requireAuth, generateThreads]);
+threadRoutes.post("/threads/create", [
   requireAuth,
-  // ...fileUploadMiddlewares,
+  ...fileUploadMiddlewares,
   createThread,
 ]);
 
