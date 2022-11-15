@@ -21,7 +21,7 @@ threadRoutes.get("/threads/homepage", getHomepageThreads);
 threadRoutes.get("/threads/getByAuthor", getThreadsByAuthor);
 threadRoutes.post("/threads/generate", [requireAuth, generateThreads]);
 threadRoutes.post("/threads/create", [
-  requireAuth,
+  // requireAuth,
   ...fileUploadMiddlewares,
   createThread,
 ]);
