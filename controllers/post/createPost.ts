@@ -14,9 +14,6 @@ const createPost = async (
         authorId,
         content,
         options,
-        image: file?.originalname
-          ? `${CONSTANTS.IMG_UPLOAD_PATH}/${file.originalname}`
-          : 'DEFAULT_PATH?',
         threadId,
       },
     });

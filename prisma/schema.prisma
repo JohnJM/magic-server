@@ -22,10 +22,8 @@ model Post {
   id       String       @id @default(auto()) @map("_id") @db.ObjectId
   author   User         @relation(fields: [authorId], references: [id])
   authorId String       @db.ObjectId
-  subject  String
   content  String
   options  PostOption[] @default([OPTION_1])
-  image    String
   thread   Thread       @relation(fields: [threadId], references: [id])
   threadId String       @db.ObjectId
 }
