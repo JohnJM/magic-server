@@ -3,20 +3,18 @@ import { CONSTANTS } from '../../constants';
 import { prisma } from '../../main';
 
 const createThread = async (
-  { file, body: { thread } = {} }: Request,
+  { body }: Request,
   res: Response,
 ) => {
-  if (!thread) return res.status(500).json({ err: 'No thread provided' });
+  if (!body) return res.status(500).json({ err: 'No thread provided' });
   try {
-    const { authorId, subject, content } = thread;
+    const { authorId, subject, content, image } = body;
     const threads = await prisma.thread.create({
       data: {
         authorId,
         subject,
         content,
-        image: file?.originalname
-          ? `${CONSTANTS.IMG_UPLOAD_PATH}/${file.originalname}`
-          : 'DEFAULT_PATH?',
+        image,
         createdAt: new Date(),
       },
     });

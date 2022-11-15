@@ -6,13 +6,12 @@ import {
   getThreadsByAuthor,
   generateThreads,
 } from '../controllers/thread';
-import {} from '../controllers/thread/createThread';
 import { getAuthMiddleware } from '../middlewares/auth';
 import { getFileUploadMiddlewares } from '../middlewares/fileUpload';
 
 const threadRoutes = Router();
 const requireAuth = getAuthMiddleware([UserRole.ADMIN, UserRole.SUPERADMIN]);
-const fileUploadMiddlewares = getFileUploadMiddlewares('threadImage');
+const fileUploadMiddlewares = getFileUploadMiddlewares('image');
 
 threadRoutes.get('/threads/homepage', getHomepageThreads);
 threadRoutes.get('/threads/getByAuthor', getThreadsByAuthor);
